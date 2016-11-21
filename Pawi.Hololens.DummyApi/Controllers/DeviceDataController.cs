@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Pawi.Hololens.DummyApi.Models;
 
 namespace Pawi.Hololens.DummyApi.Controllers
@@ -9,6 +10,8 @@ namespace Pawi.Hololens.DummyApi.Controllers
     [RoutePrefix("api")]
     public class DeviceDataController : ApiController
     {
+        private static DateTime _instance = DateTime.UtcNow;
+
         /// <summary>
         /// You can get different data for devices 1 through 3 and default values for every other id
         /// </summary>
@@ -35,10 +38,11 @@ namespace Pawi.Hololens.DummyApi.Controllers
         #region private methods
         private DeviceData CreateDefaultData()
         {
+            TimeSpan time = DateTime.UtcNow - _instance.Date;
             return new DeviceData
             {
-                DeviceDescription = "Generic Device",
-                DisplayData = "This device isn't functional. It's just a mockup for a showcase",
+                DeviceDescription = "Non functional Device",
+                DisplayData = $"Not functional since {time.Minutes} minutes",
                 PositionToDevice = new Vector { XValue = 12, YValue = 12, ZValue = 12 },
                 PositionToSource = new Vector { XValue = 12, ZValue = 12, YValue = 12 }
             };
@@ -46,10 +50,11 @@ namespace Pawi.Hololens.DummyApi.Controllers
 
         private DeviceData CreateDeviceThreeData()
         {
+            long minutes = (DateTime.UtcNow.Ticks - _instance.Ticks) % 100;
             return new DeviceData
             {
-                DeviceDescription = "Device Three",
-                DisplayData = "This Device is evil. It will destroy all mankind. DO NOT INTERACT WITH IT IN ANY KIND!",
+                DeviceDescription = "Evil Device",
+                DisplayData = $"This Device is evil. It will destroy all mankind in {minutes} minutes",
                 PositionToDevice = new Vector { XValue = 5, YValue = 5, ZValue = 5 },
                 PositionToSource = new Vector { XValue = 2, ZValue = 2, YValue = 2 }
             };
@@ -57,10 +62,12 @@ namespace Pawi.Hololens.DummyApi.Controllers
 
         private DeviceData CreateDeviceTwoData()
         {
+            long rounds = (DateTime.UtcNow.Ticks - _instance.Ticks) % 100;
+            long count = (DateTime.UtcNow.Ticks - _instance.Ticks) % 222;
             return new DeviceData
             {
                 DeviceDescription = "Device Two",
-                DisplayData = "Some Data for another device. This is broken and cannot be used",
+                DisplayData = $"Rounds: {rounds}\nCount: {count}",
                 PositionToDevice = new Vector { XValue = 8, YValue = 8, ZValue = 8 },
                 PositionToSource = new Vector { XValue = 4, ZValue = 4, YValue = 4 }
             };
@@ -68,10 +75,11 @@ namespace Pawi.Hololens.DummyApi.Controllers
 
         private DeviceData CreateDeviceOneData()
         {
+            bool workingWell = (DateTime.UtcNow.Ticks - _instance.Ticks) % 2 == 0;
             return new DeviceData
             {
                 DeviceDescription = "Device One",
-                DisplayData = "Some Data for this device. It is working well and everything is OK.",
+                DisplayData = workingWell ? "This Device is working well" : "FAILURE: ATTENTION REQUIRED",
                 PositionToDevice = new Vector { XValue = 10, YValue = 10, ZValue = 10 },
                 PositionToSource = new Vector { XValue = 5, ZValue = 5, YValue = 5 }
             };

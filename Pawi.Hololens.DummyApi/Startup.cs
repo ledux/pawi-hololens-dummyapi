@@ -9,7 +9,6 @@ namespace Pawi.Hololens.DummyApi
     {
         public void Configuration(IAppBuilder app)
         {
-            string stop = "jkj";
         }
     }
 }
