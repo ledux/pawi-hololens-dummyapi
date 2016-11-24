@@ -14,11 +14,11 @@ runtimes.
 On Windows 10
 
 1. Start --> Turn Windows Features on or off
-    a. Internet Information Services --> Web Management Tools check...
+    1. Internet Information Services --> Web Management Tools check...
         - IIS Management Console
         - IIS Management Scripts and Tools
         - IIS Management Service
-    a. Internet Information Services --> World Wide Web Services check...
+    1. Internet Information Services --> World Wide Web Services check...
         - Applicationn Developement Features
         - Common HTTP Features
 
@@ -29,10 +29,10 @@ On Windows 10
 1. Rightclick on the project in the Solution Explorer --> Publish
 1. Select "Custom" publish target --> Profile Name: local --> Next
 1. Publish method: "File System"
-    a. Local IIS
-    a. IIS Sites --> Default Web Site
-    a. Create new Web Application --> "HoloApi" --> Open
-    a. Next --> Next --> Publish
+    1. Local IIS
+    1. IIS Sites --> Default Web Site
+    1. Create new Web Application --> "HoloApi" --> Open
+    1. Next --> Next --> Publish
 
 You can now access the API through http://localhost/HoloApi/api/1
 
