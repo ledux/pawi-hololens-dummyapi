@@ -12,12 +12,12 @@ namespace Pawi.Hololens.DummyApi.Controllers
     {
         private static DateTime _instance = DateTime.UtcNow;
 
+        #region public methods
         /// <summary>
         /// You can get different data for devices 1 through 3 and default values for every other id
         /// </summary>
         /// <param name="device">1, 2, 3 or every other number</param>
         /// <returns>Different data for 1, 2 or three or every other number</returns>
-        #region public methods
         [Route("{device:int}")]
         public DeviceData Get(int device)
         {
