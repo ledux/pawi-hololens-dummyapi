@@ -34,7 +34,7 @@ On Windows 10
     1. Create new Web Application --> "HoloApi" --> Open
     1. Next --> Next --> Publish
 
-You can now access the API through http://localhost/HoloApi/api/1
+You can now access the API through ```http://localhost/HoloApi/api/1```
 
 The last segment can be any number from 1 to 4
 
