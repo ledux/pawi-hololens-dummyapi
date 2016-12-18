@@ -3,23 +3,23 @@
     /// <summary>
     /// Data about a Device and where to Display
     /// </summary>
-    public class DeviceData
+    public class Information
     {
         /// <summary>
         /// The Information which should be displayed
         /// </summary>
-        public string DisplayData { get; set; }
+        public string text { get; set; }
         /// <summary>
         /// Description about the device
         /// </summary>
-        public string DeviceDescription { get; set; }
+        public string descriptor { get; set; }
         /// <summary>
-        /// Relative position to the source of the displayed data
+        /// Relative position to the point on the device
         /// </summary>
-        public Vector PositionToSource { get; set; }
+        public Vector anchor { get; set; }
         /// <summary>
-        /// Relative position to the device of the source
+        /// Relative position to the information of the device
         /// </summary>
-        public Vector PositionToDevice { get; set; }
+        public Vector target { get; set; }
     }
 }

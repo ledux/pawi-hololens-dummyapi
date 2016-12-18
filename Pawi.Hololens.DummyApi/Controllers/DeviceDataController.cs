@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using Pawi.Hololens.DummyApi.Models;
+using System.Collections.Generic;
 
 namespace Pawi.Hololens.DummyApi.Controllers
 {
@@ -19,16 +20,14 @@ namespace Pawi.Hololens.DummyApi.Controllers
         /// <param name="device">1, 2, 3 or every other number</param>
         /// <returns>Different data for 1, 2 or three or every other number</returns>
         [Route("{device:int}")]
-        public DeviceData Get(int device)
+        public InformationCollection Get(int device)
         {
             switch (device)
             {
                 case 1:
-                    return CreateDeviceOneData();
+                    return CreateLaptopDeviceData();
                 case 2:
-                    return CreateDeviceTwoData();
-                case 3:
-                    return CreateDeviceThreeData();
+                    return CreateCoffeDeviceData();
                 default:
                     return CreateDefaultData();
             }
@@ -36,52 +35,90 @@ namespace Pawi.Hololens.DummyApi.Controllers
         #endregion
 
         #region private methods
-        private DeviceData CreateDefaultData()
+        private InformationCollection CreateDefaultData()
         {
-            TimeSpan time = DateTime.UtcNow - _instance.Date;
-            return new DeviceData
+            return new InformationCollection
             {
-                DeviceDescription = "Non functional Device",
-                DisplayData = $"Not functional since {time.Minutes} minutes",
-                PositionToDevice = new Vector { XValue = 12, YValue = 12, ZValue = 12 },
-                PositionToSource = new Vector { XValue = 12, ZValue = 12, YValue = 12 }
+                information = new List<Information> {
+                    new Information
+                    {
+                        descriptor = "Not Available",
+                        text = $"The device is not available",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.0f, y = 0.4f, z = 0.0f },
+                    }
+                }
             };
         }
 
-        private DeviceData CreateDeviceThreeData()
+        private InformationCollection CreateLaptopDeviceData()
         {
-            long minutes = (DateTime.UtcNow.Ticks - _instance.Ticks) % 100;
-            return new DeviceData
+            var rng = new Random();
+
+            return new InformationCollection
             {
-                DeviceDescription = "Evil Device",
-                DisplayData = $"This Device is evil. It will destroy all mankind in {minutes} minutes",
-                PositionToDevice = new Vector { XValue = 5, YValue = 5, ZValue = 5 },
-                PositionToSource = new Vector { XValue = 2, ZValue = 2, YValue = 2 }
+                information = new List<Information> {
+                    new Information
+                    {
+                        descriptor = "Power Button",
+                        text = $"Power Button",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.1f, y = 0.3f, z = 0.0f },
+                    },
+                    new Information
+                    {
+                        descriptor = "CPU usage",
+                        text = $"CPU usage: { rng.Next(5, 100) }",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.0f, y = 0.4f, z = 0.0f },
+                    },
+                    new Information
+                    {
+                        descriptor = "Local Time",
+                        text = $"Time: { DateTime.Now.ToShortTimeString() }",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.1f, y = 0.1f, z = 0.2f },
+                    },
+                    new Information
+                    {
+                        descriptor = "Power Plug",
+                        text = $"Power Plug",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.1f, y = 0.1f, z = 0.2f },
+                    },
+                },
             };
         }
 
-        private DeviceData CreateDeviceTwoData()
+        private InformationCollection CreateCoffeDeviceData()
         {
-            long rounds = (DateTime.UtcNow.Ticks - _instance.Ticks) % 100;
-            long count = (DateTime.UtcNow.Ticks - _instance.Ticks) % 222;
-            return new DeviceData
-            {
-                DeviceDescription = "Device Two",
-                DisplayData = $"Rounds: {rounds}\nCount: {count}",
-                PositionToDevice = new Vector { XValue = 8, YValue = 8, ZValue = 8 },
-                PositionToSource = new Vector { XValue = 4, ZValue = 4, YValue = 4 }
-            };
-        }
+            var rng = new Random();
 
-        private DeviceData CreateDeviceOneData()
-        {
-            bool workingWell = (DateTime.UtcNow.Ticks - _instance.Ticks) % 2 == 0;
-            return new DeviceData
+            return new InformationCollection
             {
-                DeviceDescription = "Device One",
-                DisplayData = workingWell ? "This Device is working well" : "FAILURE: ATTENTION REQUIRED",
-                PositionToDevice = new Vector { XValue = 10, YValue = 10, ZValue = 10 },
-                PositionToSource = new Vector { XValue = 5, ZValue = 5, YValue = 5 }
+                information = new List<Information> {
+                    new Information
+                    {
+                        descriptor = "Power Button",
+                        text = $"Power Button",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.1f, y = 0.3f, z = 0.0f },
+                    },
+                    new Information
+                    {
+                        descriptor = "Temperature",
+                        text = $"Temperature: { rng.Next(40, 50) } C",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.0f, y = 0.4f, z = 0.0f },
+                    },
+                    new Information
+                    {
+                        descriptor = "Fluid Level",
+                        text = $"Fluid Level: 60%",
+                        anchor = new Vector { x = 0, y = 0, z = 0 },
+                        target = new Vector { x = 0.1f, y = 0.1f, z = 0.2f },
+                    },
+                },
             };
         }
         #endregion

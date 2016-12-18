@@ -8,14 +8,14 @@
         /// <summary>
         /// Value on the X-Axis
         /// </summary>
-        public float XValue { get; set; }
+        public float x { get; set; }
         /// <summary>
         /// Value on the Y-Axis
         /// </summary>
-        public float YValue { get; set; }
+        public float y { get; set; }
         /// <summary>
         /// Value on the Z-Axis
         /// </summary>
-        public float ZValue { get; set; }
+        public float z { get; set; }
     }
 }

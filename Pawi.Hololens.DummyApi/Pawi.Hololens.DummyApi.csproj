@@ -207,7 +207,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DeviceData.cs" />
+    <Compile Include="Models\Information.cs" />
+    <Compile Include="Models\InformationCollection.cs" />
     <Compile Include="Models\Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
