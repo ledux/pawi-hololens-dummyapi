@@ -45,7 +45,7 @@ namespace Pawi.Hololens.DummyApi.Controllers
                         descriptor = "Not Available",
                         text = $"The device is not available",
                         anchor = new Vector { x = 0, y = 0, z = 0 },
-                        target = new Vector { x = 0.0f, y = 0.4f, z = 0.0f },
+                        target = new Vector { x = 0.0f, y = 0.3f, z = 0.0f },
                     }
                 }
             };
@@ -62,8 +62,8 @@ namespace Pawi.Hololens.DummyApi.Controllers
                     {
                         descriptor = "Power Button",
                         text = $"Power Button",
-                        anchor = new Vector { x = 0, y = 0, z = 0 },
-                        target = new Vector { x = 0.1f, y = 0.3f, z = 0.0f },
+                        anchor = new Vector { x = 0.11f, y = 0.014f, z = 0.085f },
+                        target = new Vector { x = 0.11f, y = 0.07f, z = 0.085f },
                     },
                     new Information
                     {
